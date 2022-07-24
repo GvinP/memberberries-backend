@@ -14,8 +14,11 @@ app.use(bodyParser.urlencoded({limit: '30mb', extended: true}))
 app.use(cors())
 app.use('/posts', postsRouter)
 app.use('/user', userRouter)
+app.get('/', (req, res)=>{
+    res.send('APP IS RUNNING')
+})
 
-const CONNECTION_URL = process.env.CONNECTION_URL
+const CONNECTION_URL = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@${process.env.MONGO_DB_URL}/?retryWrites=true&w=majority`
 const PORT = process.env.PORT || 5000
 
 const start = () => {
